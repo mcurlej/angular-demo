@@ -1,0 +1,57 @@
+[{
+  "first_name": "Brandon",
+  "last_name": "Gonzales",
+  "email": "bgonzales0@facebook.com",
+  "gender": "Male",
+  "currency_code": "PEN",
+  "country": "Peru"
+}, {
+  "first_name": "Harold",
+  "last_name": "Riley",
+  "email": "hriley1@smh.com.au",
+  "gender": "Male",
+  "currency_code": "SEK",
+  "country": "Sweden"
+}, {
+  "first_name": "Kathy",
+  "last_name": "Fuller",
+  "email": "kfuller2@ucla.edu",
+  "gender": "Female",
+  "currency_code": "CNY",
+  "country": "China"
+}, {
+  "first_name": "Heather",
+  "last_name": "Reed",
+  "email": "hreed3@reference.com",
+  "gender": "Female",
+  "currency_code": "CNY",
+  "country": "China"
+}, {
+  "first_name": "Harry",
+  "last_name": "Reyes",
+  "email": "hreyes4@samsung.com",
+  "gender": "Male",
+  "currency_code": "IDR",
+  "country": "Indonesia"
+}, {
+  "first_name": "Betty",
+  "last_name": "Campbell",
+  "email": "bcampbell5@cargocollective.com",
+  "gender": "Female",
+  "currency_code": "CNY",
+  "country": "China"
+}, {
+  "first_name": "Edward",
+  "last_name": "Weaver",
+  "email": "eweaver6@google.co.jp",
+  "gender": "Male",
+  "currency_code": "IDR",
+  "country": "Indonesia"
+}, {
+  "first_name": "Betty",
+  "last_name": "Fox",
+  "email": "bfox7@dailymotion.com",
+  "gender": "Female",
+  "currency_code": "EUR",
+  "country": "Portugal"
+}]
