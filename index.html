@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Angular Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href=bower_components/bootstrap/dist/css/bootstrap.css rel=stylesheet />
+    <link href=bower_components/bootstrap/dist/css/bootstrap-theme.css rel=stylesheet />
+  </head>
+  <body ng-app="demo">
+
+    <div class="container" ng-controller="MainCtrl as main">
+      <!-- Static navbar -->
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Contact</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="row" ng-click="main.initRecord = true"><span class="col-md-3"><a href="">Create Record</a></span></div><br />
+      <div class="row">
+        <div class="col-md-3">
+	<ul class="list-group">
+          <li class="list-group-item" ng-repeat="record in main.actualRecords track by $index" ng-click="main.showRecord($index)"><a href="">{{record.email}}</a></li>
+	</ul>
+        </div>
+        <div class="col-md-9">
+	  <div class="panel panel-default" ng-show="main.selectedRecord === undefined && main.initRecord !== true">
+	    <div class="panel-heading">No record selected</div>
+	    <div class="panel-body">
+	    	No secord selected!
+	    </div>
+	  </div>
+	  <div class="panel panel-default" ng-show="main.initRecord === true">
+	    <div class="panel-body" ng-show="main.initRecord">
+              {{main.newRecord}}
+              <br />
+              <br />
+	      <form>
+		<div class="form-group">
+		  <label for="exampleInputEmail1">Email:</label>
+                  <input class="form-control" id="exampleInputEmail1" ng-model="main.newRecord.email" placeholder="Email" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputFirstName1">First Name:</label>
+                  <input class="form-control" id="exampleInputFirstName1" ng-model="main.newRecord.first_name" placeholder="First Name" required>
+		</div>
+		<div class="form-group">
+                  <label for="exampleInputLastName1">Last Name:</label>
+                  <input class="form-control" id="exampleInputLastName1" ng-model="main.newRecord.last_name" placeholder="Last Name" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputGender1">Gender:</label>
+                  <input class="form-control" id="exampleInputGender1" ng-model="main.newRecord.gender" placeholder="Gender" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputCountry1">Country:</label>
+                  <input class="form-control" id="exampleInputCountry1" ng-model="main.newRecord.country" placeholder="Country" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputCurrency1">Currency:</label>
+                  <input class="form-control" id="exampleInputCurrency1" ng-model="main.newRecord.currency_code"placeholder="Currency" required>
+		</div>
+                <button type="submit" class="btn btn-default" ng-click="main.createRecord()">Create</button><button style="float: right;" ng-click="main.initRecord = false; main.recordEdited = false; main.newRecord = {};">Cancel</button>
+	      </form>
+	    </div>
+          </div>
+	  <div class="panel panel-default" ng-hide="main.selectedRecord === undefined || main.initRecord === true">
+            <div class="panel-heading">ID: {{main.selectedRecord._id.$oid}}
+              <span style="float:right;"><a href="" ng-click="main.recordEdited = true">Edit</a><span>|
+              <span style="float:right;"><a href="" ng-click="main.deleteRecord()">Delete</a><span>
+            </div>
+	    <div class="panel-body" ng-hide="main.recordEdited">
+	      <form novalidate>
+		<div class="form-group">
+		  <label>Email:</label>
+	          {{main.selectedRecord.email}}
+		</div>
+		<div class="form-group">
+		  <label>First Name:</label>
+	          {{main.selectedRecord.first_name}}
+		</div>
+		<div class="form-group">
+                  <label>Last Name:</label>
+	          {{main.selectedRecord.last_name}}
+		</div>
+		<div class="form-group">
+		  <label>Gender:</label>
+	          {{main.selectedRecord.gender}}
+		</div>
+		<div class="form-group">
+		  <label>Country:</label>
+	          {{main.selectedRecord.country}}
+		</div>
+		<div class="form-group">
+		  <label>Currency:</label>
+	          {{main.selectedRecord.currency_code}}
+		</div>
+	      </form>
+	    </div>
+	    <div class="panel-body" ng-show="main.recordEdited">
+	      <form novalidate>
+		<div class="form-group">
+		  <label for="exampleInputEmail1">Email:</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" ng-model="main.selectedRecord.email" placeholder="Email" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputFirstName1">First Name:</label>
+                  <input class="form-control" id="exampleInputFirstName1" ng-model="main.selectedRecord.first_name" placeholder="First Name" required>
+		</div>
+		<div class="form-group">
+                  <label for="exampleInputLastName1">Last Name:</label>
+                  <input class="form-control" id="exampleInputLastName1" ng-model="main.selectedRecord.last_name" placeholder="Last Name" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputGender1">Gender:</label>
+                  <input class="form-control" id="exampleInputGender1" ng-model="main.selectedRecord.gender" placeholder="Gender" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputCountry1">Country:</label>
+                  <input class="form-control" id="exampleInputCountry1" ng-model="main.selectedRecord.country" placeholder="Country" required>
+		</div>
+		<div class="form-group">
+		  <label for="exampleInputCurrency1">Currency:</label>
+                  <input class="form-control" id="exampleInputCurrency1" ng-model="main.selectedRecord.currency_code"placeholder="Currency" required>
+		</div>
+                <button type="submit" class="btn btn-default" ng-click="main.updateRecord()">Submit</button><button style="float: right;" ng-click="main.recordEdited = false">Cancel</button>
+	      </form>
+	    </div>
+	  </div>
+	</div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/resources.js"></script>
+    <script src="app/services.js"></script>
+    <script src="app/controllers.js"></script>
+    <script src="app/directives.js"></script>
+  </body>
+</html>
